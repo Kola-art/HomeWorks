@@ -1,58 +1,38 @@
 function Emploee(employee) {
-    this.obj = Object.assign( {}, employee);
-    Object.defineProperty(this, "fullInfo",  {
-        get() {
-            let infoArr=[];
-            for (key in this.obj) {
-                infoArr.push(` ${key} -  ${this.obj[key]}`)
-            }
-          return infoArr;
-        },
-      
-        set(value) {
-            for (key in this.obj) {
-                for(change in value){
-                    if(key == change) this.obj[key] = value[change]
-                }
-            }
-        return this.obj;
-        }
-      });
-   
+   return Object.assign(this, employee);
 }
+
 let employeeObj = new Emploee(emplyeeArr[0]);
 
 Emploee.prototype.getFullName = function(){
-    return `${this.obj.surname} ${this.obj.name}`;
+    return ` ${this.surname} ${this.name}`;
 }
 
 Emploee.prototype.makeString = function(){
     let infoString=[];
-    for (key in this.obj) {
-        infoString.push(` ${key} -  ${this.obj[key]}`)
+    for (key in this) {
+            if(typeof(this[key]) == 'function') {
+                continue;
+            }
+        infoString.push(` ${key} -  ${this[key]} `)
     }
   return infoString;
 }
 
-let employForArray = new Emploee(emplyeeArr);
-
-let createEmployesFromObj = (obj) => {
+let createEmployesFromArr = (arr) => {
     let result = [];
-    for(key in obj){
-        if(typeof(obj[key]) == 'object'){
-            for(a in obj[key]) {
-            result.push(obj[key][a]);
-            }
-        }
+    for(let i=0; i < arr.length; i++) {
+        let elem = new Emploee(arr[i]);
+        result.push(elem);
     }
     return result;
 };
-const emplyeeConstructArr = createEmployesFromObj(employForArray);
+const emplyeeConstructArr = createEmployesFromArr(emplyeeArr);
 
 const getFullNamesFromArr = (arr) => {
    let names = [];
    for(let i=0; i < arr.length; i++) {
-       names.push( " " + arr[i].name + " " + arr[i].surname )
+       names.push(arr[i].getFullName())
    }
    return names;
 }
@@ -67,14 +47,40 @@ const getMiddleSalary = (arr) => {
 }
 
 const getRandomEmployee = (arr) => {
-    let random = Math.floor(Math.random() * 11);
+    let max = arr.length;
+    let random = Math.floor(Math.random() * max);
     let infoString=[];
+    console.log(arr[random]);
     for (key in arr[random]) {
-        infoString.push(` ${key} -  ${arr[random][key]}`);
-    }
-    return infoString;
+            if(typeof(arr[random][key]) == 'function') {
+               continue;
+            }
+            infoString.push(`${key}: ${arr[random][key]}`);
+        }
+    return infoString.join(', ');
 }
 
+Object.defineProperty(Emploee.prototype, "fullInfo",  {
+    get() {
+        let infoArr=[];
+        for (key in this) {
+            if(typeof(this[key]) == 'function') {
+                continue;
+             }
+            infoArr.push(` ${key} -  ${this[key]}`)
+        }
+      return infoArr.join(', ');
+    },
+  
+    set(value) {
+        for (key in this) {
+            for(change in value){
+                if(key == change) this[key] = value[change]
+            }
+        }
+    return this;
+    }
+});
 
 document.write( 'Первое задание' + '<br>' + '<br>');
 document.write("Инормация о работнике (свойства объекта со значениями) :" + employeeObj.makeString());
@@ -89,8 +95,8 @@ document.write("Средняя з/п: " + getMiddleSalary(emplyeeConstructArr));
 document.write('<br>' +'<br>' + 'Шестое задание' + '<br>' + '<br>');
 document.write("Счастливчик: " + getRandomEmployee(emplyeeConstructArr));
 document.write('<br>' +'<br>' + 'Седьмое задание' + '<br>' + '<br>');
-console.log(employeeObj.obj);
+console.log(employeeObj);
 document.write("До изменений: " + employeeObj.fullInfo +'<br>');
 employeeObj.fullInfo = {name: 'Fedor', salary: 9000, email: 'dsgdg'};
 document.write("С изменениями: " + employeeObj.fullInfo +'<br>');
-console.log(employeeObj.obj);
+console.log(employeeObj);
