@@ -61,11 +61,12 @@ console.log(getTime());
 // task 4
 console.log('Задание 4');
 
-const timer = (time) => { setInterval(function () {
+const timer = (time) => { 
+    let timerID = setInterval(function () {
         seconds = time % 60;
         minutes = Math.floor(time/60);
         if (time <= 0) {
-            clearInterval(timer);
+            clearInterval(timerID);
             console.log("Time end");
         } else { 
             let strTimer = `${minutes}:${seconds}`;
@@ -84,4 +85,4 @@ const timer = (time) => { setInterval(function () {
     }, 1000)
 }
 
-// timer(10);
+// timer(4);
