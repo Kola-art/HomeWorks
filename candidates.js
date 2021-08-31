@@ -4750,3 +4750,4 @@ const condidateArr = [
 condidateArr.forEach(item => {
     item.registered = item.registered.split(' ')[0]
 })
+

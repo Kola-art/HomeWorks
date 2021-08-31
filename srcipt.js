@@ -85,13 +85,14 @@ console.log(getCompanyNames())
 console.log("задание 7");
 
     function getUsersByYear(year) {
+        
         let arrId = [];
         condidateArr.forEach(function(item, index){
-            if(new Date(condidateArr[index].registered).getFullYear() == year) arrId.push(condidateArr[index]._id)
+            if(new Date(item.registered).getFullYear() == year) arrId.push(condidateArr[index]._id)
         })
         return arrId;
     }
-   console.log(getUsersByYear(2018))
+   console.log(getUsersByYear(2017))
 
 // task 8
 console.log("задание 8");
@@ -115,18 +116,14 @@ console.log(getCondidatesByUnreadMsg(1))
 console.log("задание 9");
 
 function getCondidatesByGender(gender) {
-    let genderArr = [];
-    condidateArr.forEach(function(item, index){
-        if(condidateArr[index].gender == gender) {
-            genderArr.push(new Condidate(condidateArr[index]))
-        }
-    })
+    let genderArr =  condidateArr.filter(item => item.gender === gender)
+        
     if( gender == 'male' || gender == 'female'){
         return genderArr;
     }
     else return 'Интересный вариант';
 }
-console.log(getCondidatesByGender('male'));
+console.log(getCondidatesByGender('female'));
 
 // task 10 
 console.log("задание 10");
