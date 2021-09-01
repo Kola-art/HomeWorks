@@ -7,6 +7,7 @@
 	<style>
 		form {
 			width: 300px;
+			margin: 0 auto;
 		}
 		.input-item {
 			height: 45px;
@@ -61,15 +62,53 @@
 			color: green;
 			font-size: 18px;
 		}
+		.task-wrapper {
+			width: 150px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#wrapper {
+			text-align: center;
+		}
+		#lastwrapper {
+			width: 190px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.beverage:hover {
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
-	<p class="task">Первое задание</p>
 	<form action="#">
 		<div class="button">
 			<input type="submit" value="Register">
 		</div>
 	</form>
+	
+	<div id="wrapper">
+		<div id="footer">
+		<h1>Footer</h1>
+		</div>
+		<div id="main">
+			<p>I am first paragraph</p>
+			<p>I am second paragraph</p>
+			<p>I am last paragraph</p>
+		</div>
+	</div>
+		
+	<div id="lastwrapper">
+		<h1>Menu</h1> 
+		<ul id="menu">
+			<li class="beverage">cocoa</li>
+			<li class="beverage">cappuccino</li>
+			<li class="beverage">smoothie</li>
+			<li class="beverage">matcha frappe</li>
+		</ul>
+	</div>
+
+
   <script src='script.js'></script>
 </body>
 </html>
