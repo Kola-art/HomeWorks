@@ -8,39 +8,39 @@ pTaskDivider.classList.add('task')
 document.body.prepend(pTaskDivider);
 pTaskDivider.innerText = 'Первое задание';
 let form = document.querySelector("form");
+let arrOfInputs = new Array(inputQuantity).fill(1);
 
-for(let i=1; i <= inputQuantity; i++){
+arrOfInputs.forEach((item, index) => {
     let inputCreater = document.createElement('input');
     let btnDiv = document.querySelector('.button');
     inputCreater.setAttribute("type", "text");
     inputCreater.classList.add("input-item");
-    inputCreater.value = `Input ${i}`;
-    if(i%2) {
+    inputCreater.value = `Input ${index + 1}`;
+    if((index + 1)%2) {
         inputCreater.classList.add("input-item-odd")
-        if (!(i%3)) {
+        if (!((index + 1)%3)) {
             inputCreater.value = '';
             inputCreater.setAttribute("placeholder", "Divided to 3");
         }
-        if(i === inputQuantity) {
+        if((index + 1) === inputQuantity) {
             inputCreater.classList.add("margin-zero");
         }
     }
-    else if (i === inputQuantity && !(i%3) ) {
+    else if ((index + 1) === inputQuantity && !((index + 1)%3) ) {
         inputCreater.value = '';
         inputCreater.setAttribute("placeholder", "Divided to 3");
         inputCreater.classList.add("margin-zero");
     }
-    else if (!(i%3)) {
+    else if (!((index + 1)%3)) {
         inputCreater.value = '';
         inputCreater.setAttribute("placeholder", "Divided to 3");
 
     }
-    else if(i === inputQuantity) {
+    else if((index + 1) === inputQuantity) {
             inputCreater.classList.add("margin-zero");
     }
     form.insertBefore(inputCreater, btnDiv)
-}
-
+})
 
 let pTaskDivider2 = document.createElement('h3');
 pTaskDivider2.classList.add('task')
@@ -123,15 +123,15 @@ menu.addEventListener('click', function(e) {
     let elemText = e.target.innerText;
     elemText = elemText.split("\n");
     let olCreator = document.createElement('ol');
-    elem.appendChild(olCreator);
-    
-    INGREDIENTS[elemText[0]].forEach((item) => {
-        let liCreator = document.createElement('li');
-        olCreator.appendChild(liCreator);
-        liCreator.innerHTML = `${item}`
-    });
-    
-    if(elem.childNodes.length > 2) {
+    if(elem.localName === "li") {
+        elem.appendChild(olCreator);
+        INGREDIENTS[elemText[0]].forEach((item) => {
+            let liCreator = document.createElement('li');
+            olCreator.appendChild(liCreator);
+            liCreator.innerHTML = `${item}`
+        });
+    }
+    if(elem.localName === "li" && elem.childNodes.length > 2) {
        while(elem.childNodes.length > 1){
             elem.lastChild.remove()
         }
