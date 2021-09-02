@@ -11,35 +11,35 @@ let form = document.querySelector("form");
 let arrOfInputs = new Array(inputQuantity).fill(1);
 
 arrOfInputs.forEach((item, index) => {
-    let inputCreater = document.createElement('input');
+    item = document.createElement('input');
     let btnDiv = document.querySelector('.button');
-    inputCreater.setAttribute("type", "text");
-    inputCreater.classList.add("input-item");
-    inputCreater.value = `Input ${index + 1}`;
+    item.setAttribute("type", "text");
+    item.classList.add("input-item");
+    item.value = `Input ${index + 1}`;
     if((index + 1)%2) {
-        inputCreater.classList.add("input-item-odd")
+        item.classList.add("input-item-odd")
         if (!((index + 1)%3)) {
-            inputCreater.value = '';
-            inputCreater.setAttribute("placeholder", "Divided to 3");
+            item.value = '';
+            item.setAttribute("placeholder", "Divided to 3");
         }
         if((index + 1) === inputQuantity) {
-            inputCreater.classList.add("margin-zero");
+            item.classList.add("margin-zero");
         }
     }
     else if ((index + 1) === inputQuantity && !((index + 1)%3) ) {
-        inputCreater.value = '';
-        inputCreater.setAttribute("placeholder", "Divided to 3");
-        inputCreater.classList.add("margin-zero");
+        item.value = '';
+        item.setAttribute("placeholder", "Divided to 3");
+        item.classList.add("margin-zero");
     }
     else if (!((index + 1)%3)) {
-        inputCreater.value = '';
-        inputCreater.setAttribute("placeholder", "Divided to 3");
+        item.value = '';
+        item.setAttribute("placeholder", "Divided to 3");
 
     }
     else if((index + 1) === inputQuantity) {
-            inputCreater.classList.add("margin-zero");
+            item.classList.add("margin-zero");
     }
-    form.insertBefore(inputCreater, btnDiv)
+    form.insertBefore(item, btnDiv)
 })
 
 let pTaskDivider2 = document.createElement('h3');
