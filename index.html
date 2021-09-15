@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>ModuleJS - Kolodka</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="time-slot"></div>
+        <div class="activity-slot"></div>
+    </div>
+    <form id="event-form">
+        <label for="event-title">Includ new event in your life</label>
+        <input type="text" id="event-title" placeholder="Event">
+        <div class="event-starter-wrapper">
+            <input type="text" id="event-start-hour" placeholder="Start HH"> <span> : </span>
+            <input type="text" id="event-start-minut" placeholder="Start MM">
+        </div>
+        <input type="text" id="event-duration" placeholder="Duration">
+        <input type="submit"  id="event-submit" value="Includ">
+    </form>
+    <form id="color-form">
+        <label for="event-color">Pick up events color</label>
+        <input type="color" id="event-color">
+        <input type="submit"  id="color-submit" value="Pick Up">
+    </form>
+  
+    <div class="remind">
+        <p class="remind-event"></p>
+    </div>
+
+    <script src="shedule.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
