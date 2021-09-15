@@ -20,39 +20,14 @@ fisrtPromise.then(response => {
 
 // task 2
 
-// let productList = ['potato', 'papper', 'cheese', 'meat', 'bread'];
-let productList = ['potato', 'papper'];
+let productList = ['potato', 'papper', 'cheese', 'meat', 'bread'];
+// let productList = ['potato', 'papper'];
 
 function goToShop(productStore){
     return new Promise((resolve) => {
       resolve(productStore);
     });
 }
-
-// Сначала сделал так (функции потребители выглядят лучше чем во 2 варианте)
-
-// const makeDiner = new Promise((resolve, reject) =>{
-//     setTimeout(() => {
-//         goToShop(productList)
-//         .then(response => {
-//             response.length >= 4 ? resolve('Bon Appetit') :
-//             reject( () => {
-//                     class ValidationError extends Error {
-//                         constructor(message) {
-//                         super(message); 
-//                         this.name = "Product Error"; 
-//                         }
-//                     }
-//                     return new ValidationError('Too low products');
-//                 })
-//             });
-//    }, 3000);
-// });
-
-// makeDiner.then(response => console.log(response))
-// .catch(err => console.error(err()));
-
-// потом переделал так, как лучше теряюсь в догадках
 
 class ValidationError extends Error {
     constructor(message) {
