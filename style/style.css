@@ -1,3 +1,23 @@
+@font-face {
+    font-family: 'Open Sans', sans-serif;
+    src: url('../fonts/OpenSans-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Open Sans', sans-serif;
+    src: url('../fonts/OpenSans-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Open Sans', sans-serif;
+    src: url('../fonts/OpenSans-ExtraBold.ttf');
+    font-weight: 800;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
 body{
     overflow-x: hidden;
 }
@@ -14,7 +34,6 @@ body{
     z-index: 2;
     padding-left: 10px;
     padding-top: 5px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     box-sizing: border-box;
     overflow: hidden;
@@ -24,6 +43,7 @@ body{
     border-width: 1px;
     border-left-width: 3px;
     border-color: #beb1b1;
+    transition: all 1s;
 }
 
 .divider{
@@ -36,7 +56,6 @@ body{
 .time-slot {
     width: 50px;
     height: 100%;
-    font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -72,7 +91,6 @@ body{
     width: 49%;
 }
 form{
-    font-family: 'Open Sans', sans-serif;
     width: 220px;
     color: rgb(175, 99, 69);
     text-align: center;
@@ -151,7 +169,6 @@ input[type="submit"]:hover {
     margin-top: 15px;
 }
 .remind{
-    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     position: absolute;
     top: 0;

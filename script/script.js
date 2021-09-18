@@ -21,7 +21,7 @@ function drawTime(elem, container) {
             let timeTable = time < 10 ? `0${time}:00` : `${time}:00`;
             timeCreator.style.fontSize = '16px';
             timeCreator.innerText = timeTable; 
-            timeCreator.style.top = (i*2)+'px';
+            timeCreator.style.top = (i*2+2)+'px';
             hrCreator.style.top = (i*2)+'px';
             container.append(hrCreator);
             timeSlot.append(timeCreator);
@@ -125,30 +125,35 @@ function getAttributes(events) {
 };
   
 // delete/edit event 
-let index = null;
+
 function editor(spanBg) {
   let eventsCollection = document.querySelectorAll('.event');
   eventsCollection.forEach((event, idx) => {
+    let eventWidth = event.style.width;
+    let leftMargin = event.style.left;
     let spanCreator = document.createElement('span');
     event.append(spanCreator);
     spanCreator.classList.add('close');
     spanCreator.innerHTML = 'X';
     spanCreator.style.backgroundColor = spanBg;
     event.addEventListener('mouseover', () =>{
+      if(event.style.left !== "10px") {
+        event.style.left = "10px";
+      }
+      event.style.zIndex = 5;
+      event.style.width = "100%";
       spanCreator.style.display = "inline-block";
       spanCreator.addEventListener('click', (e) => {
-        index = idx;
-      })
-      spanCreator.addEventListener('mouseout', (e) => {
-        if(index || index === 0) {
-          schedule.splice(index, 1);
-          drawElements(schedule, rgbBgColor, rgbColor);
-          index = null;
-        }
+        e.stopImmediatePropagation();
+        schedule.splice(idx, 1);
+        drawElements(schedule, rgbBgColor, rgbColor);
       })
     })
     event.addEventListener('mouseout', () =>{
       spanCreator.style.display = "none";
+      event.style.left = leftMargin;
+      event.style.width = eventWidth;
+      event.style.zIndex = 2;
     })
     // edit event
     event.addEventListener('dblclick', function(e) {
@@ -162,9 +167,9 @@ function editor(spanBg) {
       let inputEventDuration = document.createElement('input');
       let btnEdit = document.createElement('input');
       let spanCreator = document.createElement('span');
-      inputEventStart.setAttribute('type','text');
-      inputEventStartMinutes.setAttribute('type','text');
-      inputEventDuration.setAttribute('type','text');
+      inputEventStart.setAttribute('type','number');
+      inputEventStartMinutes.setAttribute('type','number');
+      inputEventDuration.setAttribute('type','number');
       btnEdit.setAttribute('type','submit');
       btnEdit.setAttribute('value','Save');
       divCreator.classList.add('event-starter-wrapper');
@@ -275,13 +280,13 @@ function remind(eventShedule) {
   let sec = 0;
   let min = 0;
   let eventTimer = setInterval(()=>{
-    if(sec === 60){
+    if(sec === 60) {
       min++;
       sec = 0;
     }
     eventShedule.forEach(event => {
         if(event.start === min) {
-          if(sec <= 10) {
+          if(sec <= 7) {
             remindWrapper.classList.add('active');
             remindParagraph.innerHTML = `Don't forget about: ${event.title}`;
           } else remindWrapper.classList.remove('active');
